@@ -1,0 +1,10 @@
+{
+  "name": "Ola Insights",
+  "dataColors": ["#0F766E", "#F59E0B", "#2563EB", "#DC2626", "#7C3AED", "#0891B2", "#65A30D", "#94A3B8"],
+  "background": "#FFFFFF", "foreground": "#1E293B", "tableAccent": "#0F766E",
+  "textClasses": {
+    "title": {"fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#1E293B"},
+    "label": {"fontFace": "Segoe UI", "fontSize": 11, "color": "#475569"},
+    "callout": {"fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#0F766E"}
+  }
+}

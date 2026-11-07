@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p4_card0",
+  "position": {
+    "x": 20.0,
+    "y": 78,
+    "z": 10,
+    "height": 92,
+    "width": 298.75,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Cancelled by Customer"
+                }
+              },
+              "queryRef": "ola_rides.Cancelled by Customer",
+              "nativeQueryRef": "Cancelled by Customer"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p2_card3",
+  "position": {
+    "x": 961.25,
+    "y": 78,
+    "z": 13,
+    "height": 92,
+    "width": 298.75,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Driver Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Driver Rating",
+              "nativeQueryRef": "Avg Driver Rating"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

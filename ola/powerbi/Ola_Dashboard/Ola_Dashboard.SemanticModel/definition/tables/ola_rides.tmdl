@@ -1,0 +1,255 @@
+table ola_rides
+
+	measure 'Total Bookings' = COUNTROWS(ola_rides)
+		formatString: #,0
+
+	measure 'Successful Rides' = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Success")
+		formatString: #,0
+
+	measure 'Success Rate %' = DIVIDE([Successful Rides], [Total Bookings])
+		formatString: 0.0%
+
+	measure 'Cancelled by Customer' = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Canceled by Customer")
+		formatString: #,0
+
+	measure 'Cancelled by Driver' = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Canceled by Driver")
+		formatString: #,0
+
+	measure 'Driver Not Found' = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Driver Not Found")
+		formatString: #,0
+
+	measure 'Cancellation Rate %' = DIVIDE([Cancelled by Customer] + [Cancelled by Driver], [Total Bookings])
+		formatString: 0.0%
+
+	measure 'Total Revenue' = CALCULATE(SUM(ola_rides[Booking_Value]), ola_rides[Booking_Status] = "Success")
+		formatString: #,0
+
+	measure 'Avg Booking Value' = DIVIDE([Total Revenue], [Successful Rides])
+		formatString: #,0
+
+	measure 'Revenue at Risk' = CALCULATE(SUM(ola_rides[Booking_Value]), ola_rides[Booking_Status] <> "Success")
+		formatString: #,0
+
+	measure 'Total Distance (km)' = CALCULATE(SUM(ola_rides[Ride_Distance]), ola_rides[Booking_Status] = "Success")
+		formatString: #,0
+
+	measure 'Avg Ride Distance' = DIVIDE([Total Distance (km)], [Successful Rides])
+		formatString: 0.0
+
+	measure 'Revenue per km' = DIVIDE([Total Revenue], [Total Distance (km)])
+		formatString: 0.0
+
+	measure 'Avg Driver Rating' = AVERAGE(ola_rides[Driver_Ratings])
+		formatString: 0.00
+
+	measure 'Avg Customer Rating' = AVERAGE(ola_rides[Customer_Rating])
+		formatString: 0.00
+
+	measure 'Incomplete Rides' = CALCULATE([Total Bookings], ola_rides[Incomplete_Rides] = "Yes")
+		formatString: #,0
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: Date
+
+	column Time
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Time
+
+	column Booking_ID
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Booking_ID
+
+	column Booking_Status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Booking_Status
+
+	column Customer_ID
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+	column Vehicle_Type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Vehicle_Type
+
+	column Pickup_Location
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Pickup_Location
+
+	column Drop_Location
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Drop_Location
+
+	column V_TAT
+		dataType: double
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: V_TAT
+
+	column C_TAT
+		dataType: double
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: C_TAT
+
+	column Canceled_Rides_by_Customer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Canceled_Rides_by_Customer
+
+	column Canceled_Rides_by_Driver
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Canceled_Rides_by_Driver
+
+	column Incomplete_Rides
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Incomplete_Rides
+
+	column Incomplete_Rides_Reason
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Incomplete_Rides_Reason
+
+	column Booking_Value
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Booking_Value
+
+	column Payment_Method
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Payment_Method
+
+	column Ride_Distance
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Ride_Distance
+
+	column Driver_Ratings
+		dataType: double
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: Driver_Ratings
+
+	column Customer_Rating
+		dataType: double
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: Customer_Rating
+
+	column Ride_Datetime
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: Ride_Datetime
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Hour
+
+	column Day_Of_Month
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Day_Of_Month
+
+	column Day_Name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Day_Name
+		sortByColumn: Day_No
+
+	column Week_Number
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Week_Number
+
+	column Is_Weekend
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Is_Weekend
+
+	column Time_Of_Day
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Time_Of_Day
+
+	column Is_Success
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Is_Success
+
+	column Revenue
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Revenue
+
+	column Distance_Bucket
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Distance_Bucket
+
+	column Day_No
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Day_No
+
+	partition ola_rides = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFilePath), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {
+									{"Date", type date},
+									{"Time", type text},
+									{"Booking_ID", type text},
+									{"Booking_Status", type text},
+									{"Customer_ID", type text},
+									{"Vehicle_Type", type text},
+									{"Pickup_Location", type text},
+									{"Drop_Location", type text},
+									{"V_TAT", type number},
+									{"C_TAT", type number},
+									{"Canceled_Rides_by_Customer", type text},
+									{"Canceled_Rides_by_Driver", type text},
+									{"Incomplete_Rides", type text},
+									{"Incomplete_Rides_Reason", type text},
+									{"Booking_Value", Int64.Type},
+									{"Payment_Method", type text},
+									{"Ride_Distance", Int64.Type},
+									{"Driver_Ratings", type number},
+									{"Customer_Rating", type number},
+									{"Ride_Datetime", type datetime},
+									{"Hour", Int64.Type},
+									{"Day_Of_Month", Int64.Type},
+									{"Day_Name", type text},
+									{"Week_Number", Int64.Type},
+									{"Is_Weekend", Int64.Type},
+									{"Time_Of_Day", type text},
+									{"Is_Success", Int64.Type},
+									{"Revenue", Int64.Type},
+									{"Distance_Bucket", type text}}),
+				    WithDayNo = Table.AddColumn(Typed, "Day_No", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type)
+				in
+				    WithDayNo

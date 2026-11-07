@@ -1,0 +1,58 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p3_sl_veh",
+  "position": {
+    "x": 460,
+    "y": 12,
+    "z": 2,
+    "height": 56,
+    "width": 380,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Vehicle_Type"
+                }
+              },
+              "queryRef": "ola_rides.Vehicle_Type",
+              "nativeQueryRef": "Vehicle_Type"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Vehicle",
+      "fieldChanges": true,
+      "filterChanges": true
+    }
+  }
+}

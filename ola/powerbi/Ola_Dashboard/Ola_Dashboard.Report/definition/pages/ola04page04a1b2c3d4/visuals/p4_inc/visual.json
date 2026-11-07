@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p4_inc",
+  "position": {
+    "x": 20,
+    "y": 455,
+    "z": 22,
+    "height": 255,
+    "width": 620,
+    "tabOrder": 22
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Incomplete_Rides_Reason"
+                }
+              },
+              "queryRef": "ola_rides.Incomplete_Rides_Reason",
+              "nativeQueryRef": "Incomplete_Rides_Reason"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Incomplete Rides"
+                }
+              },
+              "queryRef": "ola_rides.Incomplete Rides",
+              "nativeQueryRef": "Incomplete Rides"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Incomplete rides by reason'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

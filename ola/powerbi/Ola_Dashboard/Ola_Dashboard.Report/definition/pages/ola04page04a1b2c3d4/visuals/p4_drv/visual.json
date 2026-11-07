@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p4_drv",
+  "position": {
+    "x": 660,
+    "y": 182,
+    "z": 21,
+    "height": 260,
+    "width": 600,
+    "tabOrder": 21
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Canceled_Rides_by_Driver"
+                }
+              },
+              "queryRef": "ola_rides.Canceled_Rides_by_Driver",
+              "nativeQueryRef": "Canceled_Rides_by_Driver"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Cancelled by Driver"
+                }
+              },
+              "queryRef": "ola_rides.Cancelled by Driver",
+              "nativeQueryRef": "Cancelled by Driver"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ola_rides"
+                  }
+                },
+                "Property": "Cancelled by Driver"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cancelled rides - reasons (drivers)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

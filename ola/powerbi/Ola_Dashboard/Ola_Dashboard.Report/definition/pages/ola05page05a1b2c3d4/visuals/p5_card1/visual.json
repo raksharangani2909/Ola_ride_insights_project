@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p5_card1",
+  "position": {
+    "x": 438.3333333333333,
+    "y": 78,
+    "z": 11,
+    "height": 92,
+    "width": 403.3333333333333,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Customer Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Customer Rating",
+              "nativeQueryRef": "Avg Customer Rating"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

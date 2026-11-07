@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p5_sc",
+  "position": {
+    "x": 660,
+    "y": 455,
+    "z": 23,
+    "height": 255,
+    "width": 600,
+    "tabOrder": 23
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Vehicle_Type"
+                }
+              },
+              "queryRef": "ola_rides.Vehicle_Type",
+              "nativeQueryRef": "Vehicle_Type"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Customer Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Customer Rating",
+              "nativeQueryRef": "Avg Customer Rating"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Driver Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Driver Rating",
+              "nativeQueryRef": "Avg Driver Rating"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Customer vs driver rating'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

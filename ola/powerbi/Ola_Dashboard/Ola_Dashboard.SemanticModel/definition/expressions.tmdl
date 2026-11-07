@@ -1,0 +1,2 @@
+expression DataFilePath = "C:\Ola\ola_rides_clean.csv" meta [IsParameterQuery=true, IsParameterQueryRequired=true, Type="Text"]
+	lineageTag: 6b1f0c5e-3a52-4c55-9d0e-0a7c1d5e2f01

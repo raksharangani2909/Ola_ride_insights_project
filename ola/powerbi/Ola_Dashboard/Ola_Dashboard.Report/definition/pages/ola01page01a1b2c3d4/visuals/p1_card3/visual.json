@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p1_card3",
+  "position": {
+    "x": 773.0,
+    "y": 78,
+    "z": 13,
+    "height": 92,
+    "width": 236.0,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Ride Distance"
+                }
+              },
+              "queryRef": "ola_rides.Avg Ride Distance",
+              "nativeQueryRef": "Avg Ride Distance"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

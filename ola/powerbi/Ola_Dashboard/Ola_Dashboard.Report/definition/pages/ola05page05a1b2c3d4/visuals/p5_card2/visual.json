@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p5_card2",
+  "position": {
+    "x": 856.6666666666666,
+    "y": 78,
+    "z": 12,
+    "height": 92,
+    "width": 403.3333333333333,
+    "tabOrder": 12
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Successful Rides"
+                }
+              },
+              "queryRef": "ola_rides.Successful Rides",
+              "nativeQueryRef": "Successful Rides"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

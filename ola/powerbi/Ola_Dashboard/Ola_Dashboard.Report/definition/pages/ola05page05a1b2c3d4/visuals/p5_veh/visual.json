@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "p5_veh",
+  "position": {
+    "x": 20,
+    "y": 455,
+    "z": 22,
+    "height": 255,
+    "width": 620,
+    "tabOrder": 22
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Vehicle_Type"
+                }
+              },
+              "queryRef": "ola_rides.Vehicle_Type",
+              "nativeQueryRef": "Vehicle_Type"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Driver Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Driver Rating",
+              "nativeQueryRef": "Avg Driver Rating"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ola_rides"
+                    }
+                  },
+                  "Property": "Avg Customer Rating"
+                }
+              },
+              "queryRef": "ola_rides.Avg Customer Rating",
+              "nativeQueryRef": "Avg Customer Rating"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average ratings by vehicle type'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

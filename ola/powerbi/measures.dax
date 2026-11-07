@@ -1,0 +1,25 @@
+// ============ OLA RIDE INSIGHTS - DAX MEASURES ============
+// Table name assumed: ola_rides  (Home > New measure, paste one by one)
+
+Total Bookings        = COUNTROWS(ola_rides)
+Successful Rides      = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Success")
+Success Rate %        = DIVIDE([Successful Rides], [Total Bookings])
+Cancelled by Customer = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Canceled by Customer")
+Cancelled by Driver   = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Canceled by Driver")
+Driver Not Found      = CALCULATE([Total Bookings], ola_rides[Booking_Status] = "Driver Not Found")
+Cancellation Rate %   = DIVIDE([Cancelled by Customer] + [Cancelled by Driver], [Total Bookings])
+
+Total Revenue         = CALCULATE(SUM(ola_rides[Booking_Value]), ola_rides[Booking_Status] = "Success")
+Avg Booking Value     = DIVIDE([Total Revenue], [Successful Rides])
+Revenue at Risk       = CALCULATE(SUM(ola_rides[Booking_Value]), ola_rides[Booking_Status] <> "Success")
+
+Total Distance (km)   = CALCULATE(SUM(ola_rides[Ride_Distance]), ola_rides[Booking_Status] = "Success")
+Avg Ride Distance     = DIVIDE([Total Distance (km)], [Successful Rides])
+Revenue per km        = DIVIDE([Total Revenue], [Total Distance (km)])
+
+Avg Driver Rating     = AVERAGE(ola_rides[Driver_Ratings])
+Avg Customer Rating   = AVERAGE(ola_rides[Customer_Rating])
+Incomplete Rides      = CALCULATE([Total Bookings], ola_rides[Incomplete_Rides] = "Yes")
+
+// Rank helper for "Top 5" visuals (or simply use the visual-level Top N filter)
+Customer Value Rank   = RANKX(ALL(ola_rides[Customer_ID]), [Total Revenue], , DESC, Dense)
