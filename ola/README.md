@@ -23,7 +23,7 @@ streamlit run app.py
 
 ## Deploy (Streamlit Community Cloud)
 1. Push this folder to a GitHub repo (`git init && git add . && git commit -m "Ola insights" && git push`).
-2. share.streamlit.io > New app > pick repo, branch `main`, file `app.py` > Deploy.
+2. share.streamlit.io > New app > pick repo, branch `main`, file `app.py` > Deploy. To see the app working go through this link -->https://olarideinsightsproject-3h8994ewgvdnatznbprvhu.streamlit.app/ 
 3. Settings > Secrets: `POWERBI_URL = "<publish-to-web link>"`.
 
 ## Cleaning applied
